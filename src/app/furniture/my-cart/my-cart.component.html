@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row space-top">
+      <div class="col-md-12">
+        <h1>My Cart</h1>
+      </div>
+    </div>
+    <div>
+      <form #searchForm="ngForm" (submit)="searchItem(searchForm.value.name)">
+        <h3>
+          Search by make:
+          <input name="name" ngModel>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </h3>
+      </form>
+      <br><br>
+      <div style="color: white; background-color: green; width: 100px; margin-left: 45%">Total Sum: {{totalSum}} $</div>
+    </div>
+    <br>
+    <div *ngIf="bindingModel" class="row space-top">
+      <div *ngFor="let f of bindingModel" class="col-md-4">      
+          <div class="card text-white bg-primary">
+          <div class="card-body">
+            <blockquote class="card-blockquote">
+              <img src="{{f['arr']['image']}}">
+              <!-- <p>{{map.keys['red']}}</p> -->
+              <p>{{f['arr']['make']}}</p>
+              <p>{{f['arr']['price']}} $</p>
+              <div class="pull-right">
+                <a routerLink="../details/{{f['arr']['_id']}}" class="btn btn-info">Details</a>
+                <a (click)="deleteItem(f._id)" class="btn btn-danger"> Delete Item</a>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+
+
+
+

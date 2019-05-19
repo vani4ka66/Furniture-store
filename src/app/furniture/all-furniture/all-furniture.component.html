@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row space-top">
+    <div class="col-md-12">
+      <h1>Welcome to Furniture System</h1>
+      <p>Select furniture from the catalog to view details</p>
+    </div>
+  </div>
+  <div>
+    <form #searchForm="ngForm" (submit)="searchItem(searchForm.value.name)">
+      <h3>
+        Search by name:
+        <input name="name" ngModel>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </h3>
+    </form>
+    
+    <form>
+        <div class="dropdown">
+            <button class="dropbtn">Sort by:</button>
+            <div class="dropdown-content">
+              <a (click)="sortByName()">Name</a>
+              <a (click)="sortByPriceAsc()">Price asc</a>
+              <a (click)="sortByPriceDesc()">Price desc</a>
+            </div>
+          </div>
+    </form>
+    <br>
+  </div>
+  <div *ngIf="furniture" class="row space-top">
+    <div *ngFor="let f of furniture" class="col-md-4">      
+        <div class="card text-white bg-primary">
+        <div class="card-body">
+          <blockquote class="card-blockquote">
+            <img src="{{f.image}}">
+            <p>{{f.make}}</p>
+            <p>{{f.price}} $</p>
+            <div class="pull-right">
+              <a routerLink="../details/{{f._id}}" class="btn btn-info">Details</a>
+              <a (click)="addToCart(f)" class="btn btn-danger">Add to cart</a>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+
+
+
